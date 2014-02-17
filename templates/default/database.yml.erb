@@ -1,0 +1,29 @@
+# Default setup is given for MySQL with ruby1.9. If you're running Redmine
+# with MySQL and ruby1.8, replace the adapter name with `mysql`.
+# Examples for PostgreSQL, SQLite3 and SQL Server can be found at the end.
+# Line indentation must be 2 spaces (no tabs).
+
+<% case node[:redmine][:db][:type] -%>
+<% when 'mysql' -%>
+production:
+  adapter: mysql
+  database: redmine
+  host: <%= @database_server %>
+  username: <%= node[:redmine][:db][:user] %>
+  password: <%= node[:redmine][:db][:password] %>
+  encoding: utf8
+<% when 'sqlite' -%>
+production:
+  adapter: sqlite3
+  dbfile: db/production.db
+<% when 'postgresql' -%>
+production:
+  adapter: postgresql
+  database: redmine
+  host: <%= @database_server %>
+  username: <%= node[:redmine][:db][:user] %>
+  password: <%= node[:redmine][:db][:password] %>
+  encoding: utf8
+<% end -%>
+
+
