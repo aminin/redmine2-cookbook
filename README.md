@@ -17,9 +17,7 @@ Tested on ubuntu 12.04
 * runit
 * database
 
-##   </tr>
-   <tr>
-     <td><tt>s
+## Attributes
 
 <table>
   <tr>
