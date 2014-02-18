@@ -29,6 +29,8 @@ GEM
       rack
     coderay (1.1.0)
     diff-lcs (1.2.5)
+    emeril (0.7.0)
+      chef (> 0.10.10)
     erubis (2.7.0)
     foodcritic (3.0.3)
       erubis
@@ -109,6 +111,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  emeril
   foodcritic
   kitchen-vagrant
   librarian-chef

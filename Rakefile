@@ -6,6 +6,12 @@ FoodCritic::Rake::LintTask.new do |t|
 end
 
 begin
+  require 'emeril/rake'
+rescue LoadError
+  puts '>>>>> Emeril gem not loaded, omitting tasks' unless ENV['CI']
+end
+
+begin
   require 'kitchen/rake_tasks'
   Kitchen::RakeTasks.new
 rescue LoadError
