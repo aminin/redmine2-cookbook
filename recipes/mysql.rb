@@ -37,7 +37,7 @@ if [true, 'true'].include? node[:redmine][:create_db]
   mysql_database node[:redmine][:db][:dbname] do
     connection connection_info
     owner node[:redmine][:db][:username]
-    encoding 'utf-8'
+    encoding 'utf8'
     action :create
   end
 

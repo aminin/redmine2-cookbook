@@ -1,0 +1,51 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: ubuntu-12.04
+    driver_config:
+      box: opscode-ubuntu-12.04
+      box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
+    run_list:
+      - recipe[apt]
+
+suites:
+  - name: default
+    run_list:
+      - recipe[redmine2]
+    attributes:
+      redmine:
+        host: redmine.dev
+        db:
+          type: sqlite
+  - name: mysql
+    run_list:
+      - recipe[mysql::server]
+      - recipe[redmine2]
+    attributes:
+      redmine:
+        host: redmine.dev
+        db:
+          type: mysql
+      mysql:
+        server_root_password: q654321
+        server_repl_password: q654321
+        server_debian_password: q654321
+#  - name: postgresql
+#    run_list:
+#      - recipe[postgresql::server]
+#      - recipe[redmine2]
+#    attributes:
+#      redmine:
+#        host: redmine.dev
+#        db:
+#          type: postgresql
+#      postgresql:
+#        password:
+#          postgres: q654321
+#      build_essential:
+#        compiletime: true

@@ -19,7 +19,7 @@
 
 include_recipe 'sqlite::default'
 
-file "#{node['redmine']['home']}/redmine-#{node[:redmine][:version]}/db/production.db" do
+file "#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/db/production.db" do
   owner node[:redmine][:user]
   group node[:redmine][:user]
   mode '0644'

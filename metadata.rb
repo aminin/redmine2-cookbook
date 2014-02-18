@@ -8,15 +8,15 @@ version          '0.1.0'
 
 conflicts 'redmine'
 
-depends 'postgresql'
 depends 'rbenv'      # https://github.com/fnichol/chef-rbenv
 depends 'ruby_build' # https://github.com/fnichol/chef-ruby_build
 depends 'nginx'
 depends 'runit'
 depends 'database'
+depends 'postgresql'
+depends 'mysql'
+depends 'sqlite'
 
-recommends 'mysql'
-recommends 'sqlite'
 
 supports 'ubuntu'
 

@@ -31,7 +31,7 @@ if [true, 'true'].include? node[:redmine][:create_db]
   postgresql_database_user node[:redmine][:db][:username] do
     connection connection_info
     password   node[:redmine][:db][:password]
-    encoding   'utf-8'
+    encoding   'utf8'
     action     :create
   end
 
