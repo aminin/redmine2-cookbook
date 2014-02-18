@@ -58,8 +58,7 @@ attribute 'redmine/version',
 attribute 'redmine/create_db',
           display_name:    'Create DB on install',
           description:     'Whether to create DB',
-          default:         true,
-          type:            'boolean',
+          default:         'true',
           recipes:         ['redmine2::default']
 
 attribute 'redmine/db',

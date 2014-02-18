@@ -19,4 +19,33 @@
 
 include_recipe 'mysql::client'
 
-# TODO: create database here
+if [true, 'true'].include? node[:redmine][:create_db]
+  include_recipe 'database::mysql'
+
+  connection_info = {
+      host:     node[:redmine][:db][:hostname],
+      username: 'root',
+      password: node[:mysql][:server_root_password]
+  }
+
+  mysql_database_user node[:redmine][:db][:username] do
+    connection connection_info
+    password   node[:redmine][:db][:password]
+    action     :create
+  end
+
+  mysql_database node[:redmine][:db][:dbname] do
+    connection connection_info
+    owner node[:redmine][:db][:username]
+    encoding 'utf-8'
+    action :create
+  end
+
+  mysql_database_user node[:redmine][:db][:username] do
+    connection    connection_info
+    database_name node[:redmine][:db][:dbname]
+    host          '%'
+    privileges    [:all]
+    action        :grant
+  end
+end

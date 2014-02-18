@@ -19,24 +19,25 @@
 
 include_recipe 'postgresql::client'
 
-if node['redmine']['create_db']
+if [true, 'true'].include? node[:redmine][:create_db]
   include_recipe 'database::postgresql'
 
   connection_info = {
-      host:     node['redmine']['db']['hostname'],
+      host:     node[:redmine][:db][:hostname],
       username: 'postgres',
-      password: node['postgresql']['password']['postgres']
+      password: node[:postgresql][:password][:postgres]
   }
 
-  postgresql_database_user node['redmine']['db']['username'] do
+  postgresql_database_user node[:redmine][:db][:username] do
     connection connection_info
-    password   node['redmine']['db']['password']
+    password   node[:redmine][:db][:password]
+    encoding   'utf-8'
     action     :create
   end
 
-  postgresql_database node['redmine']['db']['dbname'] do
+  postgresql_database node[:redmine][:db][:dbname] do
     connection connection_info
-    owner node['redmine']['db']['username']
+    owner node[:redmine][:db][:username]
     action :create
   end
 end
