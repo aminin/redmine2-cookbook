@@ -1,18 +1,34 @@
 upstream redmine {
   server 127.0.0.1:3000;
 }
+<% if node[:redmine][:prefix] -%>
+map $uri $static_file {
+    # A subdirectory with this name should not exist.
+    default $uri;
+    ~^/redmine/(?P<static_f>.*)$      $static_f;
+}
+<% end -%>
 
 server {
-  # Выставлено специально для виртуальных хостов, для использования server_name_in_redirect
   server_name  <%= @server_name %>;
   server_name_in_redirect off;
 
   access_log  /var/log/nginx/redmine.access.log;
   error_log  /var/log/nginx/redmine.error.log;
 
+  client_max_body_size 20M;
+
   # Заметка: Должен совпадать с префиксом заданным при конфигурации thin
   #          или / если никакого префикса не задано
+<% if node[:redmine][:prefix] -%>
+  location ~* ^<%= node[:redmine][:prefix] %>/(?<file>(javascripts|stylesheets|images|help|themes|plugin_assets).*) {
+    alias <%= @app_path %>/public/$static_file;
+  }
+
+  location <%= node[:redmine][:prefix] %> {
+<% else -%>
   location / {
+<% end -%>
     root   <%= @app_path %>/public;
 
     error_page 404  404.html;

@@ -1,5 +1,12 @@
 
 production:
   email_delivery:
+<% if node[:redmine][:config] and node[:redmine][:config][:email][:delivery_method] == ':smtp' -%>
+    delivery_method: :smtp
+    smtp_settings:
+<% node[:redmine][:config][:email][:smtp_settings].each_pair do |k, v| -%>
+      <%= "#{k}: #{v}" %>
+<% end -%>
+<% else -%>
     delivery_method: :sendmail
-
+<% end -%>
