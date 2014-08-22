@@ -2,7 +2,7 @@
 require 'foodcritic'
 
 FoodCritic::Rake::LintTask.new do |t|
-  t.options = { :fail_tags => ['any'] }
+  t.options = { :fail_tags => ['any'], :tags => ['~FC001'] }
 end
 
 begin

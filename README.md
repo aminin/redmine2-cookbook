@@ -128,6 +128,13 @@ Configure your role/node e.g.:
 }
 ```
 
+## Runing tests
+
+```
+bundle exec rake foodcritic
+bundle exec rake kitchen:all
+```
+
 ## Contributing
 
 1. Fork the repository on Github
