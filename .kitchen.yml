@@ -12,6 +12,12 @@ platforms:
       box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
     run_list:
       - recipe[apt]
+  - name: ubuntu-14.04
+    driver_config:
+      box: opscode-ubuntu-14.04
+      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
+    run_list:
+      - recipe[apt]
 
 suites:
   - name: default

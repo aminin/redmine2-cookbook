@@ -8,7 +8,7 @@ Installs Redmine v2, a Ruby on Rails ticket tracking and wiki tool
 
 ### Platform
 
-Tested on ubuntu 12.04
+Tested on ubuntu 12.04, 14.04
 
 ### cookbooks
 
