@@ -22,7 +22,7 @@ platforms:
 suites:
   - name: default
     data_bags_path: "test/integration/default/data_bags"
-    encrypted_data_bag_secret_key_path: "test/integration/default/data_bags/data_bag_key"
+    encrypted_data_bag_secret_key_path: "test/integration/default/data_bag_key"
     run_list:
       - recipe[redmine2]
     attributes:
