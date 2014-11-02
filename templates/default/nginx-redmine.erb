@@ -10,11 +10,19 @@ map $uri $static_file {
 <% end -%>
 
 server {
+<% if node[:redmine][:ssl_data_bag_name] -%>
+  listen <%= @ssl_port %> ssl;
+<% end -%>
   server_name  <%= @server_name %>;
   server_name_in_redirect off;
 
   access_log  /var/log/nginx/redmine.access.log;
   error_log  /var/log/nginx/redmine.error.log;
+
+<% if node[:redmine][:ssl_data_bag_name] -%>
+  ssl_certificate     <%= @ssl_cert %>;
+  ssl_certificate_key <%= @ssl_key %>;
+<% end -%>
 
   client_max_body_size 20M;
 
