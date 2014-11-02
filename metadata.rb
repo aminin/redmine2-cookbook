@@ -16,6 +16,7 @@ depends 'database'
 depends 'postgresql'
 depends 'mysql'
 depends 'sqlite'
+depends 'certificate'
 
 
 supports 'ubuntu'

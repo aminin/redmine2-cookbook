@@ -21,6 +21,8 @@ platforms:
 
 suites:
   - name: default
+    data_bags_path: "test/integration/default/data_bags"
+    encrypted_data_bag_secret_key_path: "test/integration/default/data_bag_key"
     run_list:
       - recipe[redmine2]
     attributes:
@@ -28,7 +30,10 @@ suites:
         host: redmine.dev
         db:
           type: sqlite
+        ssl_data_bag_name: redmine_example_com
   - name: mysql
+    data_bags_path: "test/integration/default/data_bags"
+    encrypted_data_bag_secret_key_path: "test/integration/default/data_bag_key"
     run_list:
       - recipe[mysql::server]
       - recipe[redmine2]
@@ -37,6 +42,7 @@ suites:
         host: redmine.dev
         db:
           type: mysql
+        ssl_data_bag_name: redmine_example_com
       mysql:
         server_root_password: q654321
         server_repl_password: q654321
