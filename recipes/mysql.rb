@@ -17,7 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe 'mysql::client'
+# There is a mysql cookbook's bag.
+# Prevent to install mysql-server-5.6/mysql-client-5.5.
+# include_recipe 'mysql::client'
+package "mysql-client-5.6" do
+  version "#{node['mysql']['version']}"
+  action :install
+end
 
 if [true, 'true'].include? node[:redmine][:create_db]
   include_recipe 'database::mysql'
