@@ -40,8 +40,7 @@ node.default['rbenv']['user_installs'] = [
         global: node[:redmine][:ruby_version],
         gems: {
             node[:redmine][:ruby_version] => [
-                { name: 'bundler' },
-                { name: 'rake' }
+                { name: 'bundler' }
             ]
         }
     }
