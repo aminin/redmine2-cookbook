@@ -164,16 +164,19 @@ template "#{node[:nginx][:dir]}/sites-available/redmine" do
   owner node[:nginx][:user]
   group node[:nginx][:user]
   variables(
-    app_path: "#{node[:redmine][:home]}/redmine",
-    server_name: node[:redmine][:host],
-    ssl_port: node[:redmine][:ssl_port],
-    ssl_cert: "#{node[:redmine][:ssl_cert_dir]}/certs/#{node.fqdn}.pem",
-    ssl_key: "#{node[:redmine][:ssl_cert_dir]}/private/#{node.fqdn}.key"
+    app_path:        "#{node[:redmine][:home]}/redmine",
+    server_name:     node[:redmine][:host],
+    listen_port:     node[:redmine][:listen_port],
+    ssl_listen_port: node[:redmine][:ssl_port],
+    ssl_cert:        "#{node[:redmine][:ssl_cert_dir]}/certs/#{node.fqdn}.pem",
+    ssl_key:         "#{node[:redmine][:ssl_cert_dir]}/private/#{node.fqdn}.key"
   )
 end
 
 nginx_site 'redmine' do
   enable true
 end
+
+iptables_rule "redmine_iptables"
 
 # Configure SCM e.g. Git

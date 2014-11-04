@@ -3,6 +3,7 @@ source "https://supermarket.getchef.com"
 metadata
 
 cookbook 'certificate', '~> 0.6.3'
+cookbook 'iptables', '~> 0.14.0'
 cookbook 'rbenv', git: 'https://github.com/fnichol/chef-rbenv'
 cookbook 'ruby_build', git: 'https://github.com/fnichol/chef-ruby_build'
 cookbook 'nginx', '~> 2.7.4'

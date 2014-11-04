@@ -11,8 +11,12 @@ map $uri $static_file {
 
 server {
 <% if node[:redmine][:ssl_data_bag_name] -%>
-  listen <%= @ssl_port %> ssl;
+  listen <%= @ssl_listen_port %> ssl;
 <% end -%>
+<% if @listen_port -%>
+  listen <%= @listen_port %>;
+<% end -%>
+
   server_name  <%= @server_name %>;
   server_name_in_redirect off;
 
@@ -63,3 +67,15 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
   }
 }
+
+server {
+<% if node[:redmine][:ssl_data_bag_name] -%>
+  listen <%= @ssl_listen_port %> ssl;
+<% end -%>
+<% if @listen_port -%>
+  listen <%= @listen_port %> default_server;
+<% end -%>
+  server_name  _;
+  return       444;
+}
+
