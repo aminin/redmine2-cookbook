@@ -2,6 +2,7 @@ source "https://supermarket.getchef.com"
 
 metadata
 
+cookbook 'openssh', '~> 1.3.4'
 cookbook 'certificate', '~> 0.6.3'
 cookbook 'iptables', '~> 0.14.0'
 cookbook 'rbenv', git: 'https://github.com/fnichol/chef-rbenv'
