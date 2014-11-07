@@ -21,8 +21,8 @@ platforms:
 
 suites:
   - name: default
-    data_bags_path: "test/integration/default/data_bags"
-    encrypted_data_bag_secret_key_path: "test/integration/default/data_bag_key"
+    data_bags_path: "test/integration/mysql/data_bags"
+    encrypted_data_bag_secret_key_path: "test/integration/mysql/data_bag_key"
     run_list:
       - recipe[iptables]
       - recipe[openssh::iptables]
@@ -35,12 +35,13 @@ suites:
           type: sqlite
         ssl_data_bag_name: redmine_example_com
   - name: mysql
-    data_bags_path: "test/integration/default/data_bags"
-    encrypted_data_bag_secret_key_path: "test/integration/default/data_bag_key"
+    data_bags_path: "test/integration/mysql/data_bags"
+    encrypted_data_bag_secret_key_path: "test/integration/mysql/data_bag_key"
     run_list:
       - recipe[iptables]
-      - recipe[mysql::server]
+      - recipe[openssh::iptables]
       - recipe[redmine2]
+      - recipe[redmine2::iptables]
     attributes:
       redmine:
         host: redmine.dev
