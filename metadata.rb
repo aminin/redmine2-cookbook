@@ -19,7 +19,6 @@ depends 'sqlite'
 depends 'certificate'
 depends 'iptables'
 
-
 supports 'ubuntu'
 
 attribute 'redmine',
