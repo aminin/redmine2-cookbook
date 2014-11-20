@@ -17,6 +17,9 @@
 # limitations under the License.
 #
 
+package "git-core"
+package "unzip"
+
 bundle_command = "#{node[:redmine][:home]}/.rbenv/shims/bundle"
 rake_command = "#{node[:redmine][:home]}/.rbenv/shims/rake"
 bundle_install_command = case node[:redmine][:db][:type]
@@ -48,7 +51,9 @@ end
 plugins = node[:redmine][:plugins]
 
 if ! plugins.nil? && ! plugins.empty?
+
   plugins.each do |plugin|
+
     case plugin[:type]
     when "git" then
       rev = plugin[:revision] || 'master'
@@ -59,6 +64,18 @@ if ! plugins.nil? && ! plugins.empty?
         notifies :run, "execute[#{bundle_install_command}]", :delayed
         notifies :run, "execute[RAILS_ENV='production' #{rake_command} db:migrate]", :delayed
         notifies :restart, "service[redmine]", :delayed
+      end
+
+    when "zip" then
+      zipfile = File.basename(plugin[:source])
+      execute "Deploy #{plugin[:name]}" do
+        cwd "/tmp"
+        command <<-EOF
+          wget #{plugin[:source]}
+          unzip #{zipfile}
+          mv #{plugin[:name]} #{node[:redmine][:home]}/redmine#{node[:redmine][:version]}/plugins/#{plugin[:name]}
+          rm -rf #{zipfile}
+        EOF
       end
     end
   end
