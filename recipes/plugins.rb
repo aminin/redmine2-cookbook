@@ -62,7 +62,7 @@ if ! plugins.nil? && ! plugins.empty?
         revision rev
         action :sync
         notifies :run, "execute[#{bundle_install_command}]", :delayed
-        notifies :run, "execute[RAILS_ENV='production' #{rake_command} db:migrate]", :delayed
+        notifies :run, "execute[RAILS_ENV='production' #{rake_command} redmine:plugins:migrate]", :delayed
         notifies :restart, "service[redmine]", :delayed
       end
 
@@ -77,8 +77,9 @@ if ! plugins.nil? && ! plugins.empty?
           rm -rf #{zipfile}
         EOF
         notifies :run, "execute[#{bundle_install_command}]", :delayed
-        notifies :run, "execute[RAILS_ENV='production' #{rake_command} db:migrate]", :delayed
+        notifies :run, "execute[RAILS_ENV='production' #{rake_command} redmine:plugins:migrate]", :delayed
         notifies :restart, "service[redmine]", :delayed
+        not_if { ::File.exists?("#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/plugins/#{plugin[:name]}") }
       end
     end
   end
