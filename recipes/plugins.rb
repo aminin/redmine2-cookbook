@@ -73,9 +73,12 @@ if ! plugins.nil? && ! plugins.empty?
         command <<-EOF
           wget #{plugin[:source]}
           unzip #{zipfile}
-          mv #{plugin[:name]} #{node[:redmine][:home]}/redmine#{node[:redmine][:version]}/plugins/#{plugin[:name]}
+          mv #{plugin[:name]} #{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/plugins/#{plugin[:name]}
           rm -rf #{zipfile}
         EOF
+        notifies :run, "execute[#{bundle_install_command}]", :delayed
+        notifies :run, "execute[RAILS_ENV='production' #{rake_command} db:migrate]", :delayed
+        notifies :restart, "service[redmine]", :delayed
       end
     end
   end
