@@ -21,82 +21,19 @@ Tested on ubuntu 12.04, 14.04
 
 ## Attributes
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['redmine2']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-  
-  </tr>
-  <tr>
-    <td><tt>['redmine']['home']</tt></td>
-    <td>String</td>
-    <td>Location for Redmine application</td>
-    <td><tt>/home/redmine</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['redmine']['host']</tt></td>
-    <td>String</td>
-    <td>Redmine Domain</td>
-    <td><tt>redmine.example.com</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['redmine']['user']</tt></td>
-    <td>String</td>
-    <td>Owner of redmine files</td>
-    <td><tt>redmine</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['redmine']['ruby_version']</tt></td>
-    <td>String</td>
-    <td>Redmine Ruby Version</td>
-    <td><tt>1.9.3-p484</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['redmine']['version']</tt></td>
-    <td>String</td>
-    <td>Redmine version</td>
-    <td><tt>2.4.3</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['redmine']['db']['type']</tt></td>
-    <td>String</td>
-    <td>Type of redmine database</td>
-    <td><tt>postgresql</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['redmine']['db']['dbname']</tt></td>
-    <td>String</td>
-    <td>Redmine DB name</td>
-    <td><tt>redmine</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['redmine']['db']['username']</tt></td>
-    <td>String</td>
-    <td>Redmine DB user</td>
-    <td><tt>redmine</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['redmine']['db']['hostname']</tt></td>
-    <td>String</td>
-    <td>Redmine DB host</td>
-    <td><tt>localhost</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['redmine']['db']['password']</tt></td>
-    <td>String</td>
-    <td>Redmine DB password</td>
-    <td><tt>123456</tt></td>
-  </tr>
-</table>
+| Key                                    | Type    | Description                      | Default                      |
+|----------------------------------------|---------|----------------------------------|------------------------------|
+| <tt>['redmine2']['bacon']</tt>         | Boolean | whether to include bacon         | <tt>true</tt>                |
+| <tt>['redmine']['home']</tt>           | String  | Location for Redmine application | <tt>/home/redmine</tt>       |
+| <tt>['redmine']['host']</tt>           | String  | Redmine Domain                   | <tt>redmine.example.com</tt> |
+| <tt>['redmine']['user']</tt>           | String  | Owner of redmine files           | <tt>redmine</tt>             |
+| <tt>['redmine']['ruby_version']</tt>   | String  | Redmine Ruby Version             | <tt>1.9.3-p484</tt>          |
+| <tt>['redmine']['version']</tt>        | String  | Redmine version                  | <tt>2.4.3</tt>               |
+| <tt>['redmine']['db']['type']</tt>     | String  | Type of redmine database         | <tt>postgresql</tt>          |
+| <tt>['redmine']['db']['dbname']</tt>   | String  | Redmine DB name                  | <tt>redmine</tt>             |
+| <tt>['redmine']['db']['username']</tt> | String  | Redmine DB user                  | <tt>redmine</tt>             |
+| <tt>['redmine']['db']['hostname']</tt> | String  | Redmine DB host                  | <tt>localhost</tt>           |
+| <tt>['redmine']['db']['password']</tt> | String  | Redmine DB password              | <tt>123456</tt>              |
 
 ## Usage
 
