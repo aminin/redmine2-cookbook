@@ -63,7 +63,7 @@ end
 bash 'install_redmine' do
   cwd node[:redmine][:home]
   user node[:redmine][:user]
-  code <<-EOH
+    code <<-EOH
     wget http://www.redmine.org/releases/redmine-#{node[:redmine][:version]}.tar.gz;
     tar -xzf redmine-#{node[:redmine][:version]}.tar.gz
   EOH
@@ -154,7 +154,7 @@ runit_service 'redmine' do
           target_env:  'production')
 end
 
-certificate_manage node[:redmine][:ssl_data_bag_name] do
+certificate_manage node[:redmine][:ssl_data_bag_name].to_s do
   cert_path node[:redmine][:ssl_cert_dir]
   owner node[:nginx][:user]
   group node[:nginx][:user]
