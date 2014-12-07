@@ -68,9 +68,10 @@ if ! plugins.nil? && ! plugins.empty?
 
     when "zip" then
       zipfile = File.basename(plugin[:source])
-      execute "Deploy #{plugin[:name]}" do
+      # FC041
+      bash "Deploy #{plugin[:name]}" do
         cwd "/tmp"
-        command <<-EOF
+        code <<-EOF
           wget #{plugin[:source]}
           unzip #{zipfile}
           mv #{plugin[:name]} #{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/plugins/#{plugin[:name]}
