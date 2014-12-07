@@ -16,7 +16,8 @@ depends 'database'
 depends 'postgresql'
 depends 'mysql'
 depends 'sqlite'
-
+depends 'certificate'
+depends 'iptables'
 
 supports 'ubuntu'
 

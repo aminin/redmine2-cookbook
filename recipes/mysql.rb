@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+include_recipe 'mysql::server'
 include_recipe 'mysql::client'
 
 if [true, 'true'].include? node[:redmine][:create_db]

@@ -1,0 +1,6 @@
+<% if node[:redmine][:ssl_data_bag_name] -%>
+-A FWR -p tcp -m tcp --dport <%= @ssl_listen_port %> -j ACCEPT
+<% end -%>
+<% if @listen_port -%>
+-A FWR -p tcp -m tcp --dport <%= @listen_port %> -j ACCEPT
+<% end -%>

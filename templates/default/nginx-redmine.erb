@@ -10,11 +10,23 @@ map $uri $static_file {
 <% end -%>
 
 server {
+<% if node[:redmine][:ssl_data_bag_name] -%>
+  listen <%= @ssl_listen_port %> ssl;
+<% end -%>
+<% if @listen_port -%>
+  listen <%= @listen_port %>;
+<% end -%>
+
   server_name  <%= @server_name %>;
   server_name_in_redirect off;
 
   access_log  /var/log/nginx/redmine.access.log;
   error_log  /var/log/nginx/redmine.error.log;
+
+<% if node[:redmine][:ssl_data_bag_name] -%>
+  ssl_certificate     <%= @ssl_cert %>;
+  ssl_certificate_key <%= @ssl_key %>;
+<% end -%>
 
   client_max_body_size 20M;
 
@@ -53,5 +65,20 @@ server {
     proxy_set_header Host $http_host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  <% if node[:redmine][:ssl_data_bag_name] -%>
+    proxy_set_header X-Forwarded-Proto https;
+  <% end -%>
   }
 }
+
+server {
+<% if node[:redmine][:ssl_data_bag_name] -%>
+  listen <%= @ssl_listen_port %> ssl;
+<% end -%>
+<% if @listen_port -%>
+  listen <%= @listen_port %> default_server;
+<% end -%>
+  server_name  _;
+  return       444;
+}
+
