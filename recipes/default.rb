@@ -32,22 +32,32 @@ directory node[:redmine][:home] do
   mode '0755'
 end
 
-# Install ruby with rbenv
-node.default['rbenv']['user_installs'] = [
-    {
-        user: node[:redmine][:user],
-        rubies: [node[:redmine][:ruby_version]],
-        global: node[:redmine][:ruby_version],
-        gems: {
-            node[:redmine][:ruby_version] => [
-                { name: 'bundler' }
-            ]
-        }
-    }
-]
+if node[:redmine][:ruby_version] == 'system'
+  bundle_command = 'bundle'
+  rake_command = 'rake'
+  ruby_command = 'ruby'
+else
+  # Install ruby with rbenv
+  node.default['rbenv']['user_installs'] = [
+      {
+          user: node[:redmine][:user],
+          rubies: [node[:redmine][:ruby_version]],
+          global: node[:redmine][:ruby_version],
+          gems: {
+              node[:redmine][:ruby_version] => [
+                  { name: 'bundler' }
+              ]
+          }
+      }
+  ]
 
-include_recipe 'ruby_build'
-include_recipe 'rbenv::user'
+  include_recipe 'ruby_build'
+  include_recipe 'rbenv::user'
+
+  bundle_command = "#{node[:redmine][:home]}/.rbenv/shims/bundle"
+  rake_command = "#{node[:redmine][:home]}/.rbenv/shims/rake"
+  ruby_command = "#{node[:redmine][:home]}/.rbenv/shims/ruby"
+end
 
 # Download archive with source code
 bash 'install_redmine' do
@@ -105,8 +115,6 @@ template "#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/Gemfile.l
   mode '0664'
 end
 
-bundle_command = "#{node[:redmine][:home]}/.rbenv/shims/bundle"
-rake_command = "#{node[:redmine][:home]}/.rbenv/shims/rake"
 bundle_install_command = case node[:redmine][:db][:type]
   when 'sqlite'
     "#{bundle_command} install --without development test mysql postgresql rmagick"
@@ -142,7 +150,7 @@ runit_service 'redmine' do
   options(home_path:   node[:redmine][:home],
           app_path:    "#{node[:redmine][:home]}/redmine",
           target_user: node[:redmine][:user],
-          rbenv_shims: "#{node[:redmine][:home]}/.rbenv/shims",
+          target_ruby: ruby_command,
           target_env:  'production')
 end
 

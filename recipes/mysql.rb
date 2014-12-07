@@ -17,7 +17,10 @@
 # limitations under the License.
 #
 
-include_recipe 'mysql::server'
+if %w(localhost 127.0.0.1).include? default[:redmine][:db][:hostname]
+  include_recipe 'mysql::server'
+end
+
 include_recipe 'mysql::client'
 
 if [true, 'true'].include? node[:redmine][:create_db]
