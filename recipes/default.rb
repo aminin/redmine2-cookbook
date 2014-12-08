@@ -160,7 +160,7 @@ certificate_manage node[:redmine][:ssl_data_bag_name].to_s do
   group node[:nginx][:user]
   nginx_cert true
   create_subfolders true
-  not_if node[:redmine][:ssl_data_bag_name].nil?
+  not_if { node[:redmine][:ssl_data_bag_name].nil? }
 end
 
 include_recipe 'nginx'
