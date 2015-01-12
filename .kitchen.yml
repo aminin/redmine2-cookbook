@@ -55,8 +55,11 @@ suites:
         server_debian_password: q654321
   - name: postgresql
     run_list:
+      - recipe[iptables]
+      - recipe[openssh::iptables]
       - recipe[postgresql::server]
       - recipe[redmine2]
+      - recipe[redmine2::iptables]
     attributes:
       redmine:
         host: redmine.dev
