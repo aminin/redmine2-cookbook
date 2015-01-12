@@ -54,7 +54,7 @@ attribute 'redmine/ruby_version',
 attribute 'redmine/version',
           display_name:    'Redmine version',
           description:     'Redmine version',
-          default:         '2.4.3',
+          default:         '2.6.0',
           recipes:         ['redmine2::default']
 
 attribute 'redmine/create_db',
