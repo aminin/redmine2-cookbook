@@ -1,0 +1,15 @@
+{
+  "id": "redmine_example_com",
+  "cert": {
+    "encrypted_data": "xlmFghyhkwf3Xe345dA60TcwGtWbhhe0yEFxOM7Kcp0cPsMG7IfnkVm0fbKH\nHSZ7W42yeaLbjZ5GoLGGECYa7+HcdUNjFrXVFJ11IyrDwqPwi6VGZU0DG3AV\ndckujS55dGkIYyM1EzdYwBFmcgkVNGwbwkATqC7xiJY7GiBLbFW1xArqQPjF\n0y6OLs1Hvh94q6GOBXjU8US5luQF6YGL7JzSC9g5StLUF3lVd5FH7PAzRb5G\n/avGRWN54o+TupzMqyyiSv4+UqlSRfA27+PKjCaJ6EMjuJVWh999lpNk8n8O\nk1qBTP/C8fZUsMiLOiZJdwCR+umjV5MbuXloohGOZLKAmnbpx7eSs1GG/wxN\naCOxzNREzZ+FKmDahc07P6QEb4/zpaiCCDHS1DyNnOObz8YBsWZB52MIuUpa\nCJyKllnCyxLMcLKTHRARmjMhj8YSJDM8StUwLYdAiqPa6o6z5ytsLhjkcht3\nrAy4oCXbxyfUKGs2ZU6FqKVYKbWkl63ewnfbjEsbISZfs6faXKAhzDEwbOrm\nP3DbbK2t8whUOxO+SqLvOX/hb+2iq0+E+fEFNjJapmCef+VQVbjDvCaTERB/\nzyzOvCqM2BtAalSGYEdHJqDP72CwuPKHm/WSjzihnRVfqlRCH5B3fQHh8v4e\nm1cy/PMUKnQSlVrZn9CL/B+74Jq5v/Ne6H58FtgSe60ljKrKEXtDaiP7h52M\nQ9NcgSVPAkLq/FSH+xKjrwPITEvPXiibApcuL57WxOCvyjiMwAKD951Dwcgn\ndcC0ohYL8rR6oYgdl5tOANKmyyY3smU=\n",
+    "iv": "ukLVPpV8AkMubQGF77paYQ==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  },
+  "key": {
+    "encrypted_data": "ujrH0rxJI+cfFZkSQ5/7INWG5zsLE9Win5QacSsO07Gpkc5AyXn9D2Ttg3OQ\ntnlUEg6NaAg0TxLiOTX/VxC6wNIpVEuXeJXuiuQ+zaxbSN58jspTHgPdRLR5\nGBpbxOExQSGSeXDCi2ddZbUMFbUK+gxnULyfaGXFBVDl1BWn/aXa3FB50vtr\nMzoFV6qxf2MO+0uJgbkkecp+/VoFdemKcOzQHtCjfQ3ETZtzfylePW9XCGo8\nxggUugHDNoQQevzZgZj7lOEo1F4mStSr5Q4KWMpmaXuwsxI2d/r7g00IK9Zw\nl5/7FYkzSAlt1DHqexT2TusXqffH7ewDO54AKBAXiIaidjiHsQVbEyOfDE52\nv2MPRFJi+Ew2NyhpbS59Z9tOKvNxxy6TucuOf6zPSsGASipQ4ur6lp7EcuMO\nVeVyfVa+ZECj0wSwzEnzpM6yKO1oEX2Zcx7ZAfYIlYh9yzhlHlNZx6i73vN9\nlqM+Tnbro/nvH9ilNDOGqRzZDNbaD8nAt63nJkKAoQIzU1+JRJzbbubBfxsl\n+eSb+geVREaHIS59azgcTA0gMbUMWu8vwx+aQSJpfDIPn2mkIl57wnLxXeBb\nmeKpqDleY++vtEGlpb7IGw5bgZNdvhXzyiq9obRa/e4zgj67LOi4wN9rwGO1\n/XrHHwc3s9V1T9UVf0JjeXxIvlDTjmw95mMmWqtNe54O\n",
+    "iv": "ildybGOsdSLMtoKDbStpWw==\n",
+    "version": 1,
+    "cipher": "aes-256-cbc"
+  }
+}

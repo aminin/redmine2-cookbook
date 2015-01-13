@@ -53,17 +53,20 @@ suites:
         server_root_password: q654321
         server_repl_password: q654321
         server_debian_password: q654321
-#  - name: postgresql
-#    run_list:
-#      - recipe[postgresql::server]
-#      - recipe[redmine2]
-#    attributes:
-#      redmine:
-#        host: redmine.dev
-#        db:
-#          type: postgresql
-#      postgresql:
-#        password:
-#          postgres: q654321
-#      build_essential:
-#        compiletime: true
+  - name: postgresql
+    run_list:
+      - recipe[iptables]
+      - recipe[openssh::iptables]
+      - recipe[postgresql::server]
+      - recipe[redmine2]
+      - recipe[redmine2::iptables]
+    attributes:
+      redmine:
+        host: redmine.dev
+        db:
+          type: postgresql
+      postgresql:
+        password:
+          postgres: q654321
+      build_essential:
+        compiletime: true
