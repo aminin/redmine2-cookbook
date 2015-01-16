@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-if %w(localhost 127.0.0.1).include? default[:redmine][:db][:hostname]
+if %w(localhost 127.0.0.1).include? node[:redmine][:db][:hostname]
   include_recipe 'mysql::server'
 end
 
@@ -27,9 +27,9 @@ if [true, 'true'].include? node[:redmine][:create_db]
   include_recipe 'database::mysql'
 
   connection_info = {
-      host:     node[:redmine][:db][:hostname],
-      username: 'root',
-      password: node[:mysql][:server_root_password]
+    host:     node[:redmine][:db][:hostname],
+    username: 'root',
+    password: node[:mysql][:server_root_password]
   }
 
   mysql_database_user node[:redmine][:db][:username] do
