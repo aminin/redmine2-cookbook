@@ -28,7 +28,20 @@ if ! themes.nil? && ! themes.empty?
         revision "master"
         action :sync
       end
-      # More strategy?
+
+    when "zip" then
+      zipfile = File.basename(theme[:source])
+      # FC041
+      bash "Deploy redmine theme #{theme[:name]}" do
+        cwd "/tmp"
+        code <<-EOF
+          wget #{theme[:source]}
+          unzip #{zipfile}
+          mv #{theme[:name]} #{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/themes/#{theme[:name]}
+          rm -rf #{zipfile}
+        EOF
+        not_if { ::File.exists?("#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/themes/#{theme[:name]}") }
+      end
     end
   end
 end
