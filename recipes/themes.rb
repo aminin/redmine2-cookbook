@@ -37,10 +37,10 @@ if !themes.nil? && !themes.empty?
         code <<-EOF
           wget #{theme[:source]}
           unzip #{zipfile}
-          mv #{theme[:name]} #{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/themes/#{theme[:name]}
+          mv #{theme[:name]} #{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/public/themes/#{theme[:name]}
           rm -rf #{zipfile}
         EOF
-        not_if { ::File.exist?("#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/themes/#{theme[:name]}") }
+        not_if { ::File.exist?("#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/public/themes/#{theme[:name]}") }
       end
     end
   end
