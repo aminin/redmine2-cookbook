@@ -19,17 +19,30 @@
 
 themes = node[:redmine][:themes]
 
-if ! themes.nil? && ! themes.empty?
+if !themes.nil? && !themes.empty?
   themes.each do |theme|
     case theme[:type]
-    when "git" then
+    when 'git' then
+      rev = theme[:revision] || 'master'
       git "#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/public/themes/#{theme[:name]}" do
         repository theme[:source]
-        revision "master"
+        revision rev
         action :sync
       end
-      # More strategy?
+
+    when 'zip' then
+      zipfile = File.basename(theme[:source])
+      # FC041
+      bash "Deploy redmine theme #{theme[:name]}" do
+        cwd '/tmp'
+        code <<-EOF
+          wget #{theme[:source]}
+          unzip #{zipfile}
+          mv #{theme[:name]} #{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/public/themes/#{theme[:name]}
+          rm -rf #{zipfile}
+        EOF
+        not_if { ::File.exist?("#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/public/themes/#{theme[:name]}") }
+      end
     end
   end
 end
-
