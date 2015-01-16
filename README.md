@@ -48,7 +48,7 @@ and run `librarian-chef install`
 
 Configure your role/node e.g.:
 
-```json
+```ruby
 {
     redmine: {
         host: 'redmine.dev',
