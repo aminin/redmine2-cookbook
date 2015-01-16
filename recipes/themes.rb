@@ -23,9 +23,10 @@ if !themes.nil? && !themes.empty?
   themes.each do |theme|
     case theme[:type]
     when 'git' then
+      rev = theme[:revision] || 'master'
       git "#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/public/themes/#{theme[:name]}" do
         repository theme[:source]
-        revision 'master'
+        revision rev
         action :sync
       end
 
