@@ -8,7 +8,6 @@ group :development do
 end
 
 group :integration do
-  gem 'librarian-chef'
   gem 'berkshelf'
   gem 'test-kitchen'
   gem 'kitchen-vagrant'

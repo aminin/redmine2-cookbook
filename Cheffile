@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-#^syntax detection
-
-site 'http://community.opscode.com/api/v1'
-
-cookbook 'sqlite'
-cookbook 'mysql'
-cookbook 'rbenv', git: 'https://github.com/fnichol/chef-rbenv'
-cookbook 'redmine2', path: '.'

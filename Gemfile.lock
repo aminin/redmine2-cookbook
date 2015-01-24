@@ -88,13 +88,6 @@ GEM
     json (1.8.2)
     kitchen-vagrant (0.15.0)
       test-kitchen (~> 1.0)
-    librarian (0.1.2)
-      highline
-      thor (~> 0.15)
-    librarian-chef (0.0.4)
-      chef (>= 0.10)
-      librarian (~> 0.1.0)
-      minitar (>= 0.5.2)
     libyajl2 (1.2.0)
     method_source (0.8.2)
     mime-types (1.25.1)
@@ -199,6 +192,5 @@ DEPENDENCIES
   emeril
   foodcritic
   kitchen-vagrant
-  librarian-chef
   rake
   test-kitchen
