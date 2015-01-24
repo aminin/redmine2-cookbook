@@ -4,7 +4,7 @@ maintainer_email 'anton.a.minin@gmail.com'
 license          'Apache 2.0'
 description      'Installs/Configures redmine2'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.4.2'
+version          '0.5.0'
 
 conflicts 'redmine'
 
@@ -48,7 +48,7 @@ attribute 'redmine/user',
 attribute 'redmine/ruby_version',
           display_name:    'Redmine Ruby Version',
           description:     'Version of Ruby to run Redmine',
-          default:         '1.9.3-p484',
+          default:         '2.1.5-p273',
           recipes:         ['redmine2::default']
 
 attribute 'redmine/version',
