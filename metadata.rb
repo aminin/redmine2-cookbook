@@ -4,15 +4,15 @@ maintainer_email 'anton.a.minin@gmail.com'
 license          'Apache 2.0'
 description      'Installs/Configures redmine2'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.5.0'
+version          '0.5.1'
 
 conflicts 'redmine'
 
-depends 'rbenv'      # https://github.com/fnichol/chef-rbenv
+depends 'rbenv'      # https://github.com/aminin/chef-rbenv
 depends 'ruby_build' # https://github.com/fnichol/chef-ruby_build
 depends 'nginx'
 depends 'runit'
-depends 'database'
+depends 'database', '=2.3.1' # https://github.com/brint/wordpress-cookbook/issues/52#issuecomment-72665257
 depends 'postgresql'
 depends 'mysql', '< 6.0' # before recipes removed
 depends 'mysql-chef_gem', '< 1.0' # transitive dependency, before recipes removed
