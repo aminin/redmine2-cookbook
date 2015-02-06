@@ -70,15 +70,3 @@ server {
   <% end -%>
   }
 }
-
-server {
-<% if node[:redmine][:ssl_data_bag_name] -%>
-  listen <%= @ssl_listen_port %> ssl;
-<% end -%>
-<% if @listen_port -%>
-  listen <%= @listen_port %> default_server;
-<% end -%>
-  server_name  _;
-  return       444;
-}
-
