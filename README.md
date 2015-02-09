@@ -24,7 +24,6 @@ Tested on ubuntu 12.04, 14.04
 
 | Key                                    | Type    | Description                      | Default                      |
 |----------------------------------------|---------|----------------------------------|------------------------------|
-| <tt>['redmine2']['bacon']</tt>         | Boolean | whether to include bacon         | <tt>true</tt>                |
 | <tt>['redmine']['home']</tt>           | String  | Location for Redmine application | <tt>/home/redmine</tt>       |
 | <tt>['redmine']['host']</tt>           | String  | Redmine Domain                   | <tt>redmine.example.com</tt> |
 | <tt>['redmine']['user']</tt>           | String  | Owner of redmine files           | <tt>redmine</tt>             |
@@ -35,27 +34,38 @@ Tested on ubuntu 12.04, 14.04
 | <tt>['redmine']['db']['username']</tt> | String  | Redmine DB user                  | <tt>redmine</tt>             |
 | <tt>['redmine']['db']['hostname']</tt> | String  | Redmine DB host                  | <tt>localhost</tt>           |
 | <tt>['redmine']['db']['password']</tt> | String  | Redmine DB password              | <tt>123456</tt>              |
+| <tt>['redmine']['themes']</tt>         | Array   | Redmine extra themes             | <tt>empty</tt>               |
 
 ## Usage
 
-To install via librarian-chef add to your Cheffile the following lines
+To install via berkshelf add to your Berksfile the following lines
 
 ```
-cookbook 'rbenv', git: 'https://github.com/fnichol/chef-rbenv'
+cookbook 'rbenv', git: 'https://github.com/aminin/chef-rbenv'
 cookbook 'redmine2', git: 'https://github.com/aminin/redmine2-cookbook'
 ```
 
-and run `librarian-chef install`
+and run `berks install`
 
 Configure your role/node e.g.:
 
 ```ruby
 {
+    nginx: {
+        default_site_enabled: false # Disable default nginx site
+    },
     redmine: {
         host: 'redmine.dev',
         db: {
             password: '<top-secret1>'
-        }
+        },
+        themes: [
+            {
+                name: 'pixel-cookers',
+                type: 'git',
+                source: 'https://github.com/pixel-cookers/redmine-theme.git'
+            }
+        ]
     },
     postgresql: {
         password: {
