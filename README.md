@@ -66,14 +66,28 @@ Configure your role/node e.g.:
                 type: 'git',
                 source: 'https://github.com/koppen/redmine_github_hook.git'
             }
-        ]
+        ],
         themes: [
             {
                 name: 'pixel-cookers',
                 type: 'git',
                 source: 'https://github.com/pixel-cookers/redmine-theme.git'
             }
-        ]
+        ],
+        config: {
+            email: {
+                smtp_settings: {
+                    address: smtp.yandex.ru
+                    port: 465
+                    ssl: true
+                    enable_starttls_auto: true
+                    domain: redmine.dev
+                    authentication: :login
+                    user_name: 'redmine@redmine.dev'
+                    password: '<top-secret123>'
+                }
+            }
+        }
     },
     postgresql: {
         password: {
