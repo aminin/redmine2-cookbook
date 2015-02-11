@@ -25,6 +25,7 @@ if !themes.nil? && !themes.empty?
     when 'git' then
       rev = theme[:revision] || 'master'
       git "#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/public/themes/#{theme[:name]}" do
+        user node[:redmine][:user]
         repository theme[:source]
         revision rev
         action :sync
@@ -34,6 +35,7 @@ if !themes.nil? && !themes.empty?
       zipfile = File.basename(theme[:source])
       # FC041
       bash "Deploy redmine theme #{theme[:name]}" do
+        user node[:redmine][:user]
         cwd '/tmp'
         code <<-EOF
           wget #{theme[:source]}

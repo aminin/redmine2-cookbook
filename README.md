@@ -35,6 +35,7 @@ Tested on ubuntu 12.04, 14.04
 | <tt>['redmine']['db']['hostname']</tt> | String  | Redmine DB host                  | <tt>localhost</tt>           |
 | <tt>['redmine']['db']['password']</tt> | String  | Redmine DB password              | <tt>123456</tt>              |
 | <tt>['redmine']['themes']</tt>         | Array   | Redmine extra themes             | <tt>empty</tt>               |
+| <tt>['redmine']['plugins']</tt>        | Array   | Redmine plugins                  | <tt>empty</tt>               |
 
 ## Usage
 
@@ -59,6 +60,13 @@ Configure your role/node e.g.:
         db: {
             password: '<top-secret1>'
         },
+        plugins: [
+            {
+                name: 'redmine_github_hook',
+                type: 'git',
+                source: 'https://github.com/koppen/redmine_github_hook.git'
+            }
+        ]
         themes: [
             {
                 name: 'pixel-cookers',
@@ -72,7 +80,7 @@ Configure your role/node e.g.:
             postgres: '<top-secret2>' # Need admin access to create redmine DB
         }
     },
-    run_list: %w(recipe[postgresql::server] recipe[redmine2])
+    run_list: %w(recipe[postgresql::server] recipe[redmine2] recipe[redmine2::themes] recipe[redmine2::plugins])
 }
 ```
 

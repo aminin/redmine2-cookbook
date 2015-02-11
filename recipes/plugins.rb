@@ -55,9 +55,10 @@ if ! plugins.nil? && ! plugins.empty?
   plugins.each do |plugin|
 
     case plugin[:type]
-    when "git" then
+    when 'git' then
       rev = plugin[:revision] || 'master'
       git "#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}/plugins/#{plugin[:name]}" do
+        user node[:redmine][:user]
         repository plugin[:source]
         revision rev
         action :sync
@@ -66,11 +67,12 @@ if ! plugins.nil? && ! plugins.empty?
         notifies :restart, "service[redmine]", :delayed
       end
 
-    when "zip" then
+    when 'zip' then
       zipfile = File.basename(plugin[:source])
       # FC041
       bash "Deploy #{plugin[:name]}" do
-        cwd "/tmp"
+        user node[:redmine][:user]
+        cwd '/tmp'
         code <<-EOF
           wget #{plugin[:source]}
           unzip #{zipfile}
