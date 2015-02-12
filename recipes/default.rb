@@ -63,7 +63,7 @@ end
 bash 'install_redmine' do
   cwd node[:redmine][:home]
   user node[:redmine][:user]
-    code <<-EOH
+  code <<-EOH
     wget http://www.redmine.org/releases/redmine-#{node[:redmine][:version]}.tar.gz;
     tar -xzf redmine-#{node[:redmine][:version]}.tar.gz
   EOH
@@ -71,6 +71,7 @@ bash 'install_redmine' do
 end
 
 link "#{node[:redmine][:home]}/redmine" do
+  owner node[:redmine][:user]
   to "#{node[:redmine][:home]}/redmine-#{node[:redmine][:version]}"
 end
 
