@@ -50,7 +50,6 @@ else
           }
       }
   ]
-
   include_recipe 'ruby_build'
   include_recipe 'rbenv::user'
 
@@ -183,6 +182,14 @@ end
 
 nginx_site 'redmine' do
   enable true
+end
+
+logrotate_app 'redmine' do
+  cookbook  'logrotate'
+  path      "#{node[:redmine][:home]}/redmine/log/*.log"
+  frequency 'daily'
+  rotate    30
+  create    "644 #{node[:redmine][:user]} root"
 end
 
 # Configure SCM e.g. Git

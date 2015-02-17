@@ -19,6 +19,7 @@ depends 'mysql-chef_gem', '< 1.0' # transitive dependency, before recipes remove
 depends 'sqlite'
 depends 'certificate'
 depends 'iptables'
+depends 'logrotate', '>= 1.8.0'
 
 supports 'ubuntu'
 
