@@ -52,12 +52,17 @@ suites:
         server_debian_password: q654321
   - name: postgresql
     run_list:
+      - recipe[apt]
+      - recipe[build-essential::default]
       - recipe[iptables]
       - recipe[openssh::iptables]
       - recipe[postgresql::server]
       - recipe[redmine2]
       - recipe[redmine2::iptables]
     attributes:
+      apt:
+        compile_time_update: true
+        repository_uri: "http://uk.archive.ubuntu.com/ubuntu/"
       redmine:
         host: redmine.dev
         db:

@@ -34,8 +34,8 @@ end
 
 if node[:redmine][:ruby_version] == 'system'
   bundle_command = 'bundle'
-  rake_command = 'rake'
-  ruby_command = 'ruby'
+  rake_command = 'bundle exec rake'
+  ruby_command = 'bundle exec ruby'
 else
   # Install ruby with rbenv
   include_recipe 'rbenv::default'
@@ -52,8 +52,8 @@ else
   end
 
   bundle_command = "/opt/rbenv/shims/bundle"
-  rake_command = "/opt/rbenv/shims/rake"
-  ruby_command = "/opt/rbenv/shims/ruby"
+  rake_command = "#{bundle_command} exec /opt/rbenv/shims/rake"
+  ruby_command = "#{bundle_command} exec /opt/rbenv/shims/ruby"
 end
 
 # Download archive with source code
