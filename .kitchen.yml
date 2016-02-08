@@ -67,6 +67,10 @@ suites:
         host: redmine.dev
         db:
           type: postgresql
+        plugins:
+          name: 'redmine_helpdesk'
+          type: 'git'
+          source: 'https://github.com/jfqd/redmine_helpdesk'
       postgresql:
         password:
           postgres: q654321
