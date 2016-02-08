@@ -38,24 +38,22 @@ if node[:redmine][:ruby_version] == 'system'
   ruby_command = 'ruby'
 else
   # Install ruby with rbenv
-  node.default['rbenv']['user_installs'] = [
-      {
-          user: node[:redmine][:user],
-          rubies: [node[:redmine][:ruby_version]],
-          global: node[:redmine][:ruby_version],
-          gems: {
-              node[:redmine][:ruby_version] => [
-                  { name: 'bundler' }
-              ]
-          }
-      }
-  ]
-  include_recipe 'ruby_build'
-  include_recipe 'rbenv::user'
+  include_recipe 'rbenv::default'
+  include_recipe 'rbenv::ruby_build'
 
-  bundle_command = "#{node[:redmine][:home]}/.rbenv/shims/bundle"
-  rake_command = "#{node[:redmine][:home]}/.rbenv/shims/rake"
-  ruby_command = "#{node[:redmine][:home]}/.rbenv/shims/ruby"
+  node.default['rbenv'][:group_users] = [
+    node[:redmine][:user]
+  ]
+
+  rbenv_ruby(node[:redmine][:ruby_version]) { global true }
+
+  rbenv_gem 'bundler' do
+    ruby_version node[:redmine][:ruby_version]
+  end
+
+  bundle_command = "/opt/rbenv/shims/bundle"
+  rake_command = "/opt/rbenv/shims/rake"
+  ruby_command = "/opt/rbenv/shims/ruby"
 end
 
 # Download archive with source code
@@ -117,11 +115,11 @@ end
 
 bundle_install_command = case node[:redmine][:db][:type]
   when 'sqlite'
-    "#{bundle_command} install --without development test mysql postgresql rmagick"
+    "#{bundle_command} install --path vendor/bundle --without development test mysql postgresql rmagick"
   when 'mysql'
-    "#{bundle_command} install --without development test postgresql sqlite rmagick"
+    "#{bundle_command} install --path vendor/bundle --without development test postgresql sqlite rmagick"
   when 'postgresql'
-    "#{bundle_command} install --without development test mysql sqlite rmagick"
+    "#{bundle_command} install --path vendor/bundle --without development test mysql sqlite rmagick"
 end
 
 execute bundle_install_command do
