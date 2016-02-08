@@ -1,22 +1,19 @@
 ---
 driver:
-  name: vagrant
+  name: rackspace
+  rackspace_username: <%= ENV['RACKSPACE_USERNAME'] %>
+  rackspace_api_key: <%= ENV['RACKSPACE_API_KEY'] %>
+  rackspace_region: 'lon'
+  flavor_id: 'performance1-8'
+  privileged: true
+  require_chef_omnibus: 12.5.1
 
 provisioner:
-  name: chef_solo
-  require_chef_omnibus: 11.16.4
+  name: chef_zero
+  data_path: test/shared
 
 platforms:
-  - name: ubuntu-12.04
-    driver_config:
-      box: opscode-ubuntu-12.04
-      box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
-    run_list:
-      - recipe[apt]
   - name: ubuntu-14.04
-    driver_config:
-      box: opscode-ubuntu-14.04
-      box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
     run_list:
       - recipe[apt]
 
