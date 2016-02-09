@@ -9,12 +9,12 @@ describe user('redmine') do
 end
 
 describe command('ruby -v') do
-  let(:path) { '/home/redmine/.rbenv/shims:$PATH' }
+  let(:path) { '/opt/rbenv/shims:$PATH' }
   its(:stdout) { should match(/ruby 1\.9\.3p484.*/) }
 end
 
 describe package('bundler') do
-  let(:path) { '/home/redmine/.rbenv/shims:$PATH' }
+  let(:path) { '/opt/rbenv/shims:$PATH' }
   it { should be_installed.by('gem') }
 end
 

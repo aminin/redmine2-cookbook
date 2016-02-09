@@ -20,15 +20,15 @@
 package "git-core"
 package "unzip"
 
-bundle_command = "#{node[:redmine][:home]}/.rbenv/shims/bundle"
-rake_command = "#{node[:redmine][:home]}/.rbenv/shims/rake"
+bundle_command = "/opt/rbenv/shims/bundle"
+rake_command = "/opt/rbenv/shims/rake"
 bundle_install_command = case node[:redmine][:db][:type]
   when 'sqlite'
-    "#{bundle_command} install --without development test mysql postgresql rmagick"
+    "#{bundle_command} install --path vendor/bundle --without development test mysql postgresql rmagick"
   when 'mysql'
-    "#{bundle_command} install --without development test postgresql sqlite rmagick"
+    "#{bundle_command} install --path vendor/bundle --without development test postgresql sqlite rmagick"
   when 'postgresql'
-    "#{bundle_command} install --without development test mysql sqlite rmagick"
+    "#{bundle_command} install --path vendor/bundle --without development test mysql sqlite rmagick"
 end
 
 execute bundle_install_command do
