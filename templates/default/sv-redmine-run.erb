@@ -4,7 +4,7 @@ set -e
 HOME_PATH=<%= @options[:home_path] %>
 APP_PATH=<%= @options[:app_path] %>
 TARGET_USER=<%= @options[:target_user] %>
-TARGET_RUBY=<%= @options[:target_ruby] %>
+TARGET_RUBY="<%= @options[:target_ruby] %>"
 TARGET_ENV=<%= @options[:target_env] %>
 
 export rvm_ignore_rvmrc=1
